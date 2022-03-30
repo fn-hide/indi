@@ -54,7 +54,7 @@ class View(QMainWindow):
                                          ''')
         
         # preprocessing view
-        self.cleanLabel = QLabel('Preprocessing result')
+        self.cleanLabel = QLabel('Preprocessing')
         self.cleanDisplay = QPlainTextEdit()
         self.cleanLabel.setFixedHeight(30)
         self.cleanLabel.setAlignment(Qt.AlignBottom)
@@ -73,7 +73,7 @@ class View(QMainWindow):
                                         ''')
         
         # tf-idf view
-        self.tfidfLabel = QLabel('TF-IDF result')
+        self.tfidfLabel = QLabel('TF-IDF')
         self.tfidfDisplay = QPlainTextEdit()
         self.tfidfLabel.setFixedHeight(30)
         self.tfidfLabel.setAlignment(Qt.AlignBottom)
@@ -92,7 +92,7 @@ class View(QMainWindow):
                                         ''')
         
         # pca view
-        self.pcaLabel = QLabel('PCA result')
+        self.pcaLabel = QLabel('PCA')
         self.pcaDisplay = QPlainTextEdit()
         self.pcaLabel.setFixedHeight(30)
         self.pcaLabel.setAlignment(Qt.AlignBottom)
@@ -127,8 +127,10 @@ class View(QMainWindow):
         
         self._gnrLayout.addWidget(self.resLabel)
     
-    def getInput(self):
-        return self.insent.text()
+    def getSentence(self):
+        return self.insent.toPlainText()
+    
+
         
         
         

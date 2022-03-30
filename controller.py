@@ -8,8 +8,21 @@ class Controller:
         self.conSignals()
     
     def conSignals(self):
-        self._view.predictButton.clicked.connect(partial(self.setPreprocessingDisplay, 'bangsad'))
+        self._view.predictButton.clicked.connect(self._clfSentence)
     
-    def setPreprocessingDisplay(self, txt):
-        self._view.cleanDisplay.setPlainText(txt)
-        self._view.cleanDisplay.setFocus()
+    def _clfSentence(self):
+        
+        print('self._view.insent.toPlainText()')
+        self._view.cleanDisplay.setPlainText('bangsad')
+        # data = self._view.getSentence()
+        # result = self._model.classify(data)
+        
+        # self._view.tfidfDisplay.setPlainText(self._model.extracted)
+        # self._view.pcaDisplay.setPlainText(self._model.reducted)
+        
+        # self._view.insent.setPlainText(result)
+        
+
+        
+        
+        

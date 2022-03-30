@@ -17,3 +17,8 @@ model = Model()
 Controller(model, view)
 
 sys.exit(app.exec_())
+
+
+
+
+
