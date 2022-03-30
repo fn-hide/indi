@@ -8,21 +8,13 @@ class Controller:
         self.conSignals()
     
     def conSignals(self):
-        self._view.predictButton.clicked.connect(self._clfSentence)
+        self._view.predictButton.clicked.connect(partial(self._clfSentence))
     
     def _clfSentence(self):
+        data = self._view.getSentence()
+        result = self._model.classify(data)[0]
+        self._view.insent.setPlainText(str(result))
         
-        print('self._view.insent.toPlainText()')
-        self._view.cleanDisplay.setPlainText('bangsad')
-        # data = self._view.getSentence()
-        # result = self._model.classify(data)
-        
-        # self._view.tfidfDisplay.setPlainText(self._model.extracted)
-        # self._view.pcaDisplay.setPlainText(self._model.reducted)
-        
-        # self._view.insent.setPlainText(result)
-        
-
         
         
         
