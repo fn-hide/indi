@@ -1,8 +1,18 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMainWindow, QWidget, QLineEdit, QPushButton, QGridLayout, QVBoxLayout, QPlainTextEdit, QTextEdit, QFormLayout, QGroupBox, QLabel
+from PyQt5.QtWidgets import (
+    QMainWindow, 
+    QWidget, 
+    QPushButton, 
+    QVBoxLayout, 
+    QPlainTextEdit, 
+    QLabel,
+    )
+from functools import partial
 
+from window import Window
 
+        
 class View(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -23,6 +33,8 @@ class View(QMainWindow):
         self._cntWidget.setLayout(self._gnrLayout)
         
         self._createWidget()
+        
+        self._window = Window()
     
     def _createWidget(self):
         # input sentiment sentence
@@ -118,6 +130,24 @@ class View(QMainWindow):
         self.blkLabel.setFixedHeight(100)
         
         self._gnrLayout.addWidget(self.blkLabel)
+        
+        # another window
+        self.windowButton = QPushButton('Need wordcloud?')
+        self.windowButton.setFixedHeight(40)
+        
+        self._gnrLayout.addWidget(self.windowButton)
+        
+        self.windowButton.setStyleSheet('''
+                                        QPushButton{
+                                             background-color: #0d0d0d;
+                                             border: 0px;
+                                         }
+                                         QPushButton:hover{
+                                             background-color: #3f3f3f;
+                                             border: 0px;
+                                             border-radius: 20px;
+                                         }
+                                        ''')
     
     def getSentence(self):
         return self.insent.toPlainText()
