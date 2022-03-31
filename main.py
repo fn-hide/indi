@@ -26,3 +26,7 @@ sys.exit(app.exec_())
 # print(tes.todense())
 
 
+import pandas as pd
+
+pd.read_csv('assets/data.csv').shape
+
