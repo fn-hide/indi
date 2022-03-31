@@ -7,7 +7,7 @@ class View(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        self.setFixedSize(400, 500)
+        self.setFixedSize(400, 600)
         self.setWindowTitle('Sentiment Classifier')
         self.setStyleSheet('''
                            background-color: #0d0d0d;
@@ -83,15 +83,41 @@ class View(QMainWindow):
         
         self._gnrLayout.addWidget(self.classifiedLabel)
         
-        self.resLabel = QLabel()
-        self.resImage = QPixmap('img/negative.png')
+        # positive label
+        self.pstLabel = QLabel()
+        self.pstImage = QPixmap('img/positive.png')
         
-        self.resImage = self.resImage.scaled(100, 100, Qt.KeepAspectRatio)
+        self.pstImage = self.pstImage.scaled(100, 100, Qt.KeepAspectRatio)
         
-        self.resLabel.setPixmap(self.resImage)
-        self.resLabel.setAlignment(Qt.AlignCenter)
+        self.pstLabel.setPixmap(self.pstImage)
+        self.pstLabel.setAlignment(Qt.AlignCenter)
+        self.pstLabel.setFixedHeight(0)
         
-        self._gnrLayout.addWidget(self.resLabel)
+        self._gnrLayout.addWidget(self.pstLabel)
+        
+        # negative label
+        self.ngtLabel = QLabel()
+        self.ngtImage = QPixmap('img/negative.png')
+        
+        self.ngtImage = self.ngtImage.scaled(100, 100, Qt.KeepAspectRatio)
+        
+        self.ngtLabel.setPixmap(self.ngtImage)
+        self.ngtLabel.setAlignment(Qt.AlignCenter)
+        self.ngtLabel.setFixedHeight(0)
+        
+        self._gnrLayout.addWidget(self.ngtLabel)
+        
+        # blank label
+        self.blkLabel = QLabel()
+        self.blkImage = QPixmap('img/blank.png')
+        
+        self.blkImage = self.blkImage.scaled(100, 100, Qt.KeepAspectRatio)
+        
+        self.blkLabel.setPixmap(self.blkImage)
+        self.blkLabel.setAlignment(Qt.AlignCenter)
+        self.blkLabel.setFixedHeight(100)
+        
+        self._gnrLayout.addWidget(self.blkLabel)
     
     def getSentence(self):
         return self.insent.toPlainText()
