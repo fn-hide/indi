@@ -1,3 +1,4 @@
+from styles import STYLES
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
@@ -17,11 +18,9 @@ class Window(QWidget):
         
         self.setFixedSize(800, 400)
         self.setWindowTitle('Wordcloud')
-        # self.setStyleSheet('''
-        #                    background-color: #0d0d0d;
-        #                    color: #ffffff;
-        #                    font: 11px "Raleway";
-        #                    ''')
+        self.setStyleSheet(
+            STYLES['main']
+        )
         
         # first layout
         self._fsLayout = QHBoxLayout()
@@ -41,26 +40,37 @@ class Window(QWidget):
         
         self._ndLayout.addWidget(self.flButton)
         
-        # self.flButton.setStyleSheet('''
-        #                             QPushButton{
-        #                                     background-color: #0d0d0d;
-        #                                     border: 0px;
-        #                             }
-        #                             QPushButton:hover{
-        #                                     background-color: #3f3f3f;
-        #                                     border: 0px;
-        #                                     border-radius: 20px;
-        #                             }
-        #                              ''')
+        self.flButton.setStyleSheet(
+            STYLES['button']
+        )
 
         # wordcloud table
         self.wcTable = QTableWidget()
         self.wcTable.setColumnCount(2)
+        self.wcTable.verticalHeader().setVisible(False)
+        self.wcTable.horizontalHeader().sectionResized.connect(self.wcTable.resizeRowsToContents)
+        self.wcTable.setStyleSheet(
+            '''
+            QScrollBar{
+                background-color: #F7F5F2;
+            }
+            QScrollBar:handle{
+                background-color: #313552;
+            }
+            QScrollBar::handle::pressed{
+                background-color: #151D3B;
+            }
+            '''
+        )
         
         item1 = QTableWidgetItem('Classified as')
+        item1.setBackground(QtGui.QColor('#F7F5F2'))
+        item1.setForeground(QtGui.QColor('#151D3B'))
         self.wcTable.setHorizontalHeaderItem(0, item1)
         
         item2 = QTableWidgetItem('Sentiment')
+        item2.setBackground(QtGui.QColor('#F7F5F2'))
+        item2.setForeground(QtGui.QColor('#151D3B'))
         self.wcTable.setHorizontalHeaderItem(1, item2)
         
         # self.wcTable.setHorizontalHeaderLabels(['Classified as', 'Sentiment'])
@@ -75,28 +85,20 @@ class Window(QWidget):
         
         self._ndLayout.addWidget(self.wcButton)
         
-        # self.wcButton.setStyleSheet('''
-        #                             QPushButton{
-        #                                     background-color: #0d0d0d;
-        #                                     border: 0px;
-        #                             }
-        #                             QPushButton:hover{
-        #                                     background-color: #3f3f3f;
-        #                                     border: 0px;
-        #                                     border-radius: 20px;
-        #                             }
-        #                              ''')
+        self.wcButton.setStyleSheet(
+            STYLES['button']
+        )
         
         # wordcloud display
-        self.wcLabel = QLabel()
+        self.wcLabel = QLabel('WordCloud')
         self.wcLabel.setFixedSize(350, 350)
+        self.wcLabel.setAlignment(Qt.AlignCenter)
 
         self._fsLayout.addWidget(self.wcLabel)
         
-        # self.wcLabel.setStyleSheet('''
-        #                             background-color: #fff;
-        #                             border-radius: 20px;
-        #                             ''')
+        self.wcLabel.setStyleSheet(
+            STYLES['main']
+        )
         
         
         

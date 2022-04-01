@@ -8,9 +8,8 @@ from PyQt5.QtWidgets import (
     QPlainTextEdit, 
     QLabel,
     )
-from functools import partial
-
 from window import Window
+from styles import STYLES
 
         
 class View(QMainWindow):
@@ -19,11 +18,9 @@ class View(QMainWindow):
         
         self.setFixedSize(400, 600)
         self.setWindowTitle('Sentiment Classifier')
-        self.setStyleSheet('''
-                           background-color: #0d0d0d;
-                           color: #ffffff;
-                           font: 11px "Raleway";
-                           ''')
+        self.setStyleSheet(
+            STYLES['main']
+        )
         
         self._gnrLayout = QVBoxLayout()
         self._cntWidget = QWidget()
@@ -32,9 +29,11 @@ class View(QMainWindow):
         
         self._cntWidget.setLayout(self._gnrLayout)
         
+        
         self._createWidget()
         
         self._window = Window()
+        
     
     def _createWidget(self):
         # input sentiment sentence
@@ -43,13 +42,9 @@ class View(QMainWindow):
         
         self._gnrLayout.addWidget(self.insent)
         
-        self.insent.setStyleSheet('''
-                                  QPlainTextEdit{
-                                      background-color: #fff;
-                                      color: #000;
-                                      border-radius: 5px;
-                                  }
-                                  ''')
+        self.insent.setStyleSheet(
+            STYLES['display']
+        )
         
         # predict button
         self.predictButton = QPushButton('Classify')
@@ -57,17 +52,9 @@ class View(QMainWindow):
         
         self._gnrLayout.addWidget(self.predictButton)
         
-        self.predictButton.setStyleSheet('''
-                                         QPushButton{
-                                             background-color: #0d0d0d;
-                                             border: 0px;
-                                         }
-                                         QPushButton:hover{
-                                             background-color: #3f3f3f;
-                                             border: 0px;
-                                             border-radius: 20px;
-                                         }
-                                         ''')
+        self.predictButton.setStyleSheet(
+            STYLES['button']
+        )
         
         # preprocessing view
         self.cleanLabel = QLabel('Preprocessing')
@@ -80,13 +67,9 @@ class View(QMainWindow):
         self._gnrLayout.addWidget(self.cleanLabel)
         self._gnrLayout.addWidget(self.cleanDisplay)
         
-        self.cleanDisplay.setStyleSheet('''
-                                        QPlainTextEdit{
-                                            background-color: #fff;
-                                            color: #000;
-                                            border-radius: 5px;
-                                        }
-                                        ''')
+        self.cleanDisplay.setStyleSheet(
+            STYLES['display']
+        )
         
         # classified view
         self.classifiedLabel = QLabel('Your sentence classified as:')
@@ -137,17 +120,9 @@ class View(QMainWindow):
         
         self._gnrLayout.addWidget(self.windowButton)
         
-        self.windowButton.setStyleSheet('''
-                                        QPushButton{
-                                             background-color: #0d0d0d;
-                                             border: 0px;
-                                         }
-                                         QPushButton:hover{
-                                             background-color: #3f3f3f;
-                                             border: 0px;
-                                             border-radius: 20px;
-                                         }
-                                        ''')
+        self.windowButton.setStyleSheet(
+            STYLES['button']
+        )
     
     def getSentence(self):
         return self.insent.toPlainText()
