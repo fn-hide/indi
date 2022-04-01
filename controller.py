@@ -1,5 +1,6 @@
 import pandas as pd
 
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from wordcloud import WordCloud
 from nltk.corpus import stopwords
 from string import punctuation
@@ -75,6 +76,7 @@ class Controller:
                                                "All Files (*);;Python Files (*.py)")
         df = pd.read_csv(filepath).values
         
+        # self._model._sw_indo = self._model._sw_indo + [i for i in StopWordRemoverFactory().get_stop_words() if i not in self._sw_indo]
         # preprocessing result
         self._model.df_pre = [self._model.preprocessing(i[0]) for i in df]
         for i in self._model.df_pre:
@@ -102,7 +104,6 @@ class Controller:
     
     def _clfSentence(self):
         data = self._view.getSentence()
-        self._sw_indo = stopwords.words('indonesian') + list(punctuation)
         preprocessed = self._model.preprocessing(data)
         result = self._model.classify(preprocessed)[0]
         # self._view.insent.setPlainText(str(result))

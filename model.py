@@ -17,9 +17,10 @@ class Model:
         self._reductor = pickle.load(open('model/indihome_pca.pkl', 'rb'))
         
         # configuring stopwords
-        self._sw_indo = stopwords.words('indonesian') + list(punctuation)
+        self._sw_indo = list(punctuation)
+        self._sw_indo = self._sw_indo + stopwords.words('indonesian')
         self._sw_indo = self._sw_indo + [i for i in StopWordRemoverFactory().get_stop_words() if i not in self._sw_indo]
-        print(self._sw_indo)
+        print(len(self._sw_indo))
     
     def preprocessing(self, data):
         return self.stemmer_changer(        # 6. stemming
